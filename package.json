@@ -1,0 +1,25 @@
+{
+  "name": "test-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nasita-Haque/test-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nasita-Haque/test-scraper/issues"
+  },
+  "homepage": "https://github.com/Nasita-Haque/test-scraper#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  }
+}
