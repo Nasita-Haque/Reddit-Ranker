@@ -17,16 +17,21 @@ app.get('/scrape', function(req, res){
 
       $(".expando").filter(function(){
 
+
         var data = $(this).find("td");
+        console.log('VALUE', data.first().text())
 
-        ranking = data.first().text();
-        json.ranking = ranking;
+        for(var i = 0; i < 94; i++){
 
-        num_of_votes = data.eq(1).text();
-        json.num_of_votes = num_of_votes;
+          ranking = data.first(i).text();
+          json.ranking = ranking;
 
-        title = data.eq(2).text();
-        json.title = title;
+          num_of_votes = data.eq(i+1).text();
+          json.num_of_votes = num_of_votes;
+
+          title = data.eq(i+2).text();
+          json.title = title;
+        }
 
       })
     }
