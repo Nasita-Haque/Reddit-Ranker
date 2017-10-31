@@ -13,6 +13,7 @@ app.get('/scrape', function(req, res){
     if(!error){
       var $ = cheerio.load(html);
       var ranking, num_of_votes, title;
+      var books= [];
       var json = {ranking: "", num_of_votes: "", title:""};
 
       $(".expando").filter(function(){
@@ -21,22 +22,20 @@ app.get('/scrape', function(req, res){
         var data = $(this).find("td");
         console.log('VALUE', data.first().text())
 
-        for(var i = 0; i < 94; i++){
+        for(var i = 0; i < data.length; i++){
 
-          ranking = data.first(i).text();
-          json.ranking = ranking;
+          console.log("books=>", books)
+          if ( i % 3 === 0){
 
-          num_of_votes = data.eq(i+1).text();
-          json.num_of_votes = num_of_votes;
-
-          title = data.eq(i+2).text();
-          json.title = title;
+          books.push({ranking: data.eq(i).text(), num_of_votes: data.eq(i+1).text(), title: data.eq(i+2).text()})
+          }
+          
         }
 
       })
     }
 
-  fs.writeFile("output json", JSON.stringify(json, null, 4), function(err){
+  fs.writeFile("output json", JSON.stringify(books, null, 4), function(err){
    console.log("File successfully written! - Check your project directory for the output.json file");
   })
 
