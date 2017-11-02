@@ -1,8 +1,8 @@
-var express = require('express');
-var fs = require('fs');
-var request = require('request');
-var cheerio = require('cheerio');
-var app = express();
+const express = require('express');
+const fs = require('fs');
+const request = require('request');
+const cheerio = require('cheerio');
+const app = express();
 
 app.get('/scrape', function(req, res){
 
@@ -11,27 +11,25 @@ app.get('/scrape', function(req, res){
   request(url, function(error, response, html){
 
     if(!error){
-      var $ = cheerio.load(html);
-      var ranking, num_of_votes, title;
-      var books= [];
-      var json = {ranking: "", num_of_votes: "", title:""};
+      let $ = cheerio.load(html);
+      let ranking, num_of_votes, title;
+      let books= [];
+      let json = {ranking: "", num_of_votes: "", title:""};
 
       $(".expando").filter(function(){
+        let data = $(this).find("td");
 
+        for(let i = 0; i < data.length; i++){
 
-        var data = $(this).find("td");
-        console.log('VALUE', data.first().text())
-
-        for(var i = 0; i < data.length; i++){
-
-          console.log("books=>", books)
           if ( i % 3 === 0){
 
-          books.push({ranking: data.eq(i).text(), num_of_votes: data.eq(i+1).text(), title: data.eq(i+2).text()})
+          books.push({
+              ranking: data.eq(i).text(), 
+              num_of_votes: data.eq(i+1).text(), 
+              title: data.eq(i+2).text()
+            })
           }
-          
         }
-
       })
     }
 
@@ -41,11 +39,11 @@ app.get('/scrape', function(req, res){
 
   res.send('Check your console');
 
- })
+  })
 
 });
 
-var port = 4000
+let port = 4000
 
 app.listen(port);
 
