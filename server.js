@@ -6,7 +6,7 @@ const app = express();
 
 app.get('/scrape', function(req, res){
 
-  url = "https://www.reddit.com/r/Fantasy/comments/6wddcu/the_rfantasy_top_novels_poll_2017_now_with_star/"
+  const url = "https://www.reddit.com/r/Fantasy/comments/6wddcu/the_rfantasy_top_novels_poll_2017_now_with_star/"
 
   request(url, function(error, response, html){
 
