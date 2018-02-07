@@ -47,6 +47,6 @@ let port = 4000
 
 app.listen(port);
 
-console.log(`Listening on ${port}`);
+console.log(`Server is running. Listening on ${port}`);
 
 exports = module.exports = app;
